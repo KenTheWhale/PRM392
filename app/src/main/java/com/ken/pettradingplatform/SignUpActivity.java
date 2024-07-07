@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.ken.pettradingplatform.configurations.APIClientConfig;
 import com.ken.pettradingplatform.controllers.AccountController;
 import com.ken.pettradingplatform.reponses.RegisterResponse;
 import com.ken.pettradingplatform.requests.RegisterRequest;
@@ -18,10 +19,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-@RequiredArgsConstructor
 public class SignUpActivity extends AppCompatActivity {
-
-    private final AccountController accountController;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,6 +37,8 @@ public class SignUpActivity extends AppCompatActivity {
         String email = emailET.getText().toString();
         String password = passwordET.getText().toString();
         String confirmedPassword = confirmedPasswordET.getText().toString();
+
+        AccountController accountController = APIClientConfig.getClient().create(AccountController.class);
 
         signUpBTN.setOnClickListener(new View.OnClickListener() {
             @Override
