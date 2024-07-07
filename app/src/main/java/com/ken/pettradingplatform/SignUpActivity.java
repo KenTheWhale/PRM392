@@ -60,7 +60,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void register(String fullName, String email, String password, String confirmedPassword, AccountController accountController){
         RegisterRequest request = RegisterRequest.builder()
-                .fullname(fullName)
+                .fullName(fullName)
                 .email(email)
                 .password(password)
                 .confirmPassword(confirmedPassword)
@@ -69,6 +69,7 @@ public class SignUpActivity extends AppCompatActivity {
         response.enqueue(new Callback<RegisterResponse>() {
             @Override
             public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
+                assert response.body() != null;
                 Toast.makeText(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
             }
 
