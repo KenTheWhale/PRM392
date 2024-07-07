@@ -21,6 +21,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SearchActivity"/>
+        <activity android:name=".PostDetailActivity" android:theme="@style/ActivityNoActionBar"/>
+        <activity android:name=".ProfileActivity"/>
+        <activity android:name=".ShopDetailActivity" android:theme="@style/ActivityNoActionBar"/>
     </application>
 
 </manifest>
