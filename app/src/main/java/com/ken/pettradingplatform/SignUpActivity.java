@@ -1,9 +1,11 @@
 package com.ken.pettradingplatform;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -14,7 +16,6 @@ import com.ken.pettradingplatform.controllers.AccountController;
 import com.ken.pettradingplatform.reponses.RegisterResponse;
 import com.ken.pettradingplatform.requests.RegisterRequest;
 
-import lombok.RequiredArgsConstructor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -32,6 +33,7 @@ public class SignUpActivity extends AppCompatActivity {
         EditText passwordET = findViewById(R.id.et_password);
         EditText confirmedPasswordET = findViewById(R.id.et_confirm_password);
         Button signUpBTN = findViewById(R.id.btn_signup);
+        TextView signInTV = findViewById(R.id.tv_signin);
 
         String fullName = fullNameET.getText().toString();
         String email = emailET.getText().toString();
@@ -40,15 +42,23 @@ public class SignUpActivity extends AppCompatActivity {
 
         AccountController accountController = APIClientConfig.getClient().create(AccountController.class);
 
+
         signUpBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                register(fullName, email, password, confirmedPassword);
+                register(fullName, email, password, confirmedPassword, accountController);
+            }
+        });
+
+        signInTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                comeBackLogin();
             }
         });
     }
 
-    private void register(String fullName, String email, String password, String confirmedPassword){
+    private void register(String fullName, String email, String password, String confirmedPassword, AccountController accountController){
         RegisterRequest request = RegisterRequest.builder()
                 .fullname(fullName)
                 .email(email)
@@ -69,4 +79,8 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
+    private void comeBackLogin(){
+        startActivity(new Intent(this, SignInActivity.class));
+        finish();
+    }
 }

@@ -40,5 +40,5 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.lombok)
-    annotationProcessor(libs.lombok.v1162)
+    annotationProcessor(libs.lombok.v11820)
 }

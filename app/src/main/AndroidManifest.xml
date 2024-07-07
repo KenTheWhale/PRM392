@@ -13,7 +13,7 @@
         android:theme="@style/Theme.PetTradingPlatform"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".SignInActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,8 +25,8 @@
         <activity android:name=".PostDetailActivity" android:theme="@style/ActivityNoActionBar"/>
         <activity android:name=".ProfileActivity"/>
         <activity android:name=".ShopDetailActivity" android:theme="@style/ActivityNoActionBar"/>
-        <activity android:name=".SignInActivity"/>
-        <activity android:name=".SignUpActivity"/>
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".SignUpActivity" android:exported="true"/>
     </application>
 
 </manifest>
