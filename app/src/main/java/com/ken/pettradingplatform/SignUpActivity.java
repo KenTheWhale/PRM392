@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,25 +29,13 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
         setTitle("SIGN UP");
 
-        EditText fullNameET = findViewById(R.id.et_fullname);
-        EditText emailET = findViewById(R.id.et_email);
-        EditText passwordET = findViewById(R.id.et_password);
-        EditText confirmedPasswordET = findViewById(R.id.et_confirm_password);
         Button signUpBTN = findViewById(R.id.btn_signup);
         TextView signInTV = findViewById(R.id.tv_signin);
-
-        String fullName = fullNameET.getText().toString();
-        String email = emailET.getText().toString();
-        String password = passwordET.getText().toString();
-        String confirmedPassword = confirmedPasswordET.getText().toString();
-
-        AccountController accountController = APIClientConfig.getClient().create(AccountController.class);
-
 
         signUpBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                register(fullName, email, password, confirmedPassword, accountController);
+                register();
             }
         });
 
@@ -58,7 +47,19 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
 
-    private void register(String fullName, String email, String password, String confirmedPassword, AccountController accountController){
+    private void register(){
+        EditText fullNameET = findViewById(R.id.et_fullname);
+        EditText emailET = findViewById(R.id.et_email);
+        EditText passwordET = findViewById(R.id.et_password);
+        EditText confirmedPasswordET = findViewById(R.id.et_confirm_password);
+
+        String fullName = fullNameET.getText().toString();
+        String email = emailET.getText().toString();
+        String password = passwordET.getText().toString();
+        String confirmedPassword = confirmedPasswordET.getText().toString();
+
+        AccountController accountController = APIClientConfig.getClient().create(AccountController.class);
+
         RegisterRequest request = RegisterRequest.builder()
                 .fullName(fullName)
                 .email(email)
@@ -68,13 +69,15 @@ public class SignUpActivity extends AppCompatActivity {
         Call<RegisterResponse> response = accountController.register(request);
         response.enqueue(new Callback<RegisterResponse>() {
             @Override
-            public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
+            public void onResponse(@NonNull Call<RegisterResponse> call, @NonNull Response<RegisterResponse> response) {
                 assert response.body() != null;
                 Toast.makeText(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
             }
 
+
+
             @Override
-            public void onFailure(Call<RegisterResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<RegisterResponse> call, @NonNull Throwable t) {
                 Toast.makeText(getApplicationContext(), "Something was wrong", Toast.LENGTH_SHORT).show();
             }
         });

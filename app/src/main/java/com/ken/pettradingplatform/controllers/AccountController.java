@@ -14,6 +14,6 @@ public interface AccountController {
     @POST("api/Accounts/login")
     Call<LoginResponse> login(@Body LoginRequest request);
 
-    @POST("account/register")
+    @POST("api/Accounts/register")
     Call<RegisterResponse> register(@Body RegisterRequest request);
 }
