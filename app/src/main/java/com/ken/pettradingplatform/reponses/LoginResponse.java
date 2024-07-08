@@ -20,10 +20,10 @@ public class LoginResponse {
     @NoArgsConstructor
     @Builder
     private static class Account{
-        String fullName;
-        String email;
-        String password;
-        String phoneNumber;
-        String role;
+        private String fullName;
+        private String email;
+        private String password;
+        private String phoneNumber;
+        private String role;
     }
 }
