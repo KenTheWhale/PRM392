@@ -63,6 +63,8 @@ public class SignInActivity extends AppCompatActivity {
         response.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+                startActivity(intent);
                 Toast.makeText(getApplicationContext(),response.body().getMessage(), Toast.LENGTH_SHORT).show();
             }
 
