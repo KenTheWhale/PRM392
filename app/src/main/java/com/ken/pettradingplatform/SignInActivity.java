@@ -32,9 +32,6 @@ public class SignInActivity extends AppCompatActivity {
         Button btnSignIn = findViewById(R.id.btn_signin);
         TextView tvSignup = findViewById(R.id.tv_signup);
 
-        String email = etEmail.getText().toString();
-        String password = etPassword.getText().toString();
-
         AccountController accountController = APIClientConfig.getClient().create(AccountController.class);
 
         tvSignup.setOnClickListener(new View.OnClickListener() {
@@ -44,32 +41,43 @@ public class SignInActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String email = etEmail.getText().toString().trim();
+                String password = etPassword.getText().toString().trim();
                 login(email, password, accountController);
             }
         });
     }
+
     private void login(String email, String password, AccountController accountController){
+        if(email.isEmpty() || password.isEmpty()) {
+            Toast.makeText(getApplicationContext(), "Email and Password cannot be empty", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         LoginRequest loginRequest = LoginRequest
                 .builder()
                 .email(email)
                 .password(password)
                 .build();
-
         Call<LoginResponse> response = accountController.login(loginRequest);
 
+
         response.enqueue(new Callback<LoginResponse>() {
-            @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                Toast.makeText(getApplicationContext(),response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    Toast.makeText(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
-                Toast.makeText(getApplicationContext(),"Error! Login fail", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Error! Login failed", Toast.LENGTH_SHORT).show();
             }
+
         });
     }
 }
