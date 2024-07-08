@@ -74,8 +74,6 @@ public class SignUpActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
             }
 
-
-
             @Override
             public void onFailure(@NonNull Call<RegisterResponse> call, @NonNull Throwable t) {
                 Toast.makeText(getApplicationContext(), "Something was wrong", Toast.LENGTH_SHORT).show();
