@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -46,15 +47,17 @@
             android:id="@+id/ageEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:hint="Age"
-            android:layout_marginBottom="16dp"/>
+            tools:ignore="TouchTargetSizeCheck" />
 
         <EditText
             android:id="@+id/genderEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:hint="Gender"
-            android:layout_marginBottom="16dp"/>
+            tools:ignore="TouchTargetSizeCheck" />
 
         <EditText
             android:id="@+id/priceEditText"
@@ -91,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Upload Image"
-                android:src="@drawable/ic_upload" />
+                android:src="@drawable/upload_icon" />
         </LinearLayout>
 
         <Button
