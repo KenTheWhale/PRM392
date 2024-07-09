@@ -15,7 +15,7 @@
         android:theme="@style/Theme.PetTradingPlatform"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".HomepageActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,13 +23,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SearchActivity" android:exported="true"/>
-        <activity android:name=".PostDetailActivity" android:theme="@style/ActivityNoActionBar"/>
-        <activity android:name=".ProfileActivity" android:exported="true"/>
-        <activity android:name=".ShopDetailActivity" android:theme="@style/ActivityNoActionBar"/>
-        <activity android:name=".SignInActivity" android:exported="true"/>
-        <activity android:name=".SignUpActivity" android:exported="true"/>
-        <activity android:name=".ChangePasswordActivity" android:exported="true"/>
     </application>
 
 </manifest>
