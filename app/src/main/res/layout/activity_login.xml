@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    tools:context=".LoginActivity">
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/back_arrow"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:padding="8dp"/>
+        android:padding="8dp"
+        android:src="@drawable/back_arrow"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -36,18 +39,22 @@
         android:layout_marginBottom="24dp"/>
 
     <EditText
+        android:id="@+id/txt_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:hint="Email"
         android:inputType="textEmailAddress"
-        android:layout_marginBottom="16dp"/>
+        tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
+        android:id="@+id/txt_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:hint="Password"
         android:inputType="textPassword"
-        android:layout_marginBottom="16dp"/>
+        tools:ignore="TouchTargetSizeCheck" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -60,6 +67,7 @@
             android:text="Don't have an account?"/>
 
         <TextView
+            android:id="@+id/tv_create_account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Create Account"
@@ -68,11 +76,12 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Get Started"
         android:layout_marginTop="24dp"
-        android:background="#E0E0E0"
-        android:textColor="#808080"/>
+        android:background="#0D1B73"
+        android:textColor="#FFFDFD"/>
 
 </LinearLayout>

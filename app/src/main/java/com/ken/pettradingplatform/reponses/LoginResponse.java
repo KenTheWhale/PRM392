@@ -1,6 +1,8 @@
 package com.ken.pettradingplatform.reponses;
 
 
+import java.io.Serializable;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,7 +21,7 @@ public class LoginResponse {
     @AllArgsConstructor
     @NoArgsConstructor
     @Builder
-    private static class Account{
+    public static class Account implements Serializable {
         private String fullName;
         private String email;
         private String password;
