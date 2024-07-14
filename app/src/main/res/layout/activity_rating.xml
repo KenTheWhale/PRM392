@@ -2,17 +2,36 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="16dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/back_arrow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Rating"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rating"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toEndOf="@id/backButton"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/postInfoLayout"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <LinearLayout
+        android:id="@+id/postInfoLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -26,25 +45,27 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_marginStart="16dp">
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="PIN Course 401 Kitchen"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="18dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Price: $200" />
+                android:text="Price: $200"
+                android:textSize="14dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Transaction date: 05/05/2023" />
+                android:text="Transaction date: 05/05/2023"
+                android:textSize="14dp" />
 
         </LinearLayout>
     </LinearLayout>
@@ -72,14 +93,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter your feedback here"
+        android:background="@drawable/custom_input_text"
+        android:textSize="18dp"
+        android:padding="12dp"
         android:inputType="textMultiLine"
-        android:lines="3" />
+        android:lines="4"
+        android:gravity="top"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Rate It"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@android:color/holo_blue_light" />
-
+        android:textSize="18dp"
+        android:paddingVertical="20dp"
+        android:background="@drawable/custom_button_selected"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:layout_marginTop="16dp" />
 </LinearLayout>

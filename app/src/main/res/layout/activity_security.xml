@@ -24,7 +24,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Security"
-            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textSize="24sp"
             android:textStyle="bold"
             android:layout_marginStart="16dp"/>
     </LinearLayout>
@@ -42,12 +43,16 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:padding="8dp">
+        android:paddingVertical="16dp"
+        android:paddingHorizontal="10dp"
+        android:background="@drawable/custom_input_text"
+        android:clickable="true">
 
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/key_pass"
+            android:layout_marginStart="5dp"
             android:contentDescription="Password Icon"/>
 
         <TextView
@@ -55,6 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Change Password"
+            android:textColor="@color/black"
             android:textSize="16sp"
             android:layout_marginStart="16dp"/>
 

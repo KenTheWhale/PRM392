@@ -9,13 +9,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2">
+        android:orientation="horizontal">
         <ImageButton
             android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.2"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Back"
             android:src="@drawable/back_arrow"
@@ -25,18 +23,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1.5"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="16dp"
             android:text="Settings Page"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginStart="16dp" />
     </LinearLayout>
-
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Account"
+        android:textSize="18dp"
         android:textStyle="bold"
         android:layout_marginTop="16dp"/>
 
@@ -44,7 +43,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:paddingVertical="16dp"
+        android:paddingHorizontal="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/custom_input_text">
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
@@ -54,6 +56,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Account"
+            android:textColor="@color/black"
+            android:textSize="18dp"
             android:layout_marginLeft="8dp"/>
         <ImageView
             android:layout_width="24dp"
@@ -65,28 +69,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="8dp">
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/privacy_icon"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Privacy"
-            android:layout_marginLeft="8dp"/>
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/right_arrow"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="8dp">
+        android:paddingVertical="16dp"
+        android:paddingHorizontal="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/custom_input_text">
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
@@ -96,6 +82,34 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Security"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:layout_marginLeft="8dp"/>
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/right_arrow"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="16dp"
+        android:paddingHorizontal="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/custom_input_text">
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/privacy_icon"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Privacy"
+            android:textColor="@color/black"
+            android:textSize="18dp"
             android:layout_marginLeft="8dp"/>
         <ImageView
             android:layout_width="24dp"
@@ -107,6 +121,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Help"
+        android:textSize="18dp"
         android:textStyle="bold"
         android:layout_marginTop="16dp"/>
 
@@ -114,7 +129,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:paddingVertical="16dp"
+        android:paddingHorizontal="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/custom_input_text">
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
@@ -124,6 +142,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Contact Us"
+            android:textColor="@color/black"
+            android:textSize="18dp"
             android:layout_marginLeft="8dp"/>
         <ImageView
             android:layout_width="24dp"
@@ -135,7 +155,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:paddingVertical="16dp"
+        android:paddingHorizontal="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/custom_input_text">
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
@@ -145,6 +168,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="FAQ"
+            android:textColor="@color/black"
+            android:textSize="18dp"
             android:layout_marginLeft="8dp"/>
         <ImageView
             android:layout_width="24dp"
@@ -156,6 +181,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Log Out"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="100dp"
+        android:textSize="18dp"
+        android:paddingVertical="20dp"
+        android:background="@drawable/custom_button_selected"
+        android:textColor="@color/white"
+        android:textAllCaps="false"/>
 
 </LinearLayout>

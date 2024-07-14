@@ -2,7 +2,9 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -10,30 +12,31 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2">
-
+            android:layout_height="wrap_content">
             <ImageButton
                 android:id="@+id/backButton"
-                android:layout_width="11dp"
-                android:layout_height="35dp"
-                android:layout_weight="0.5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Back"
-                android:src="@drawable/back_arrow" />
+                android:src="@drawable/back_arrow"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.5"
                 android:text="Create post"
                 android:textSize="24sp"
+                android:textColor="@color/black"
                 android:textStyle="bold"
-                android:layout_marginBottom="24dp"/>
-        </LinearLayout>
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintStart_toEndOf="@id/backButton"
+                app:layout_constraintTop_toTopOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         <EditText
@@ -41,13 +44,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Pet name"
-            android:layout_marginBottom="16dp"/>
+            android:textSize="18dp"
+            android:background="@drawable/custom_input_text"
+            android:padding="12dp"
+            android:layout_marginTop="30dp"/>
 
         <EditText
             android:id="@+id/ageEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:textSize="18dp"
+            android:background="@drawable/custom_input_text"
+            android:padding="12dp"
+            android:layout_marginTop="16dp"
             android:hint="Age"
             tools:ignore="TouchTargetSizeCheck" />
 
@@ -55,8 +64,11 @@
             android:id="@+id/genderEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
             android:hint="Gender"
+            android:textSize="18dp"
+            android:background="@drawable/custom_input_text"
+            android:padding="12dp"
+            android:layout_marginTop="16dp"
             tools:ignore="TouchTargetSizeCheck" />
 
         <EditText
@@ -64,29 +76,36 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Price"
-            android:layout_marginBottom="16dp"/>
+            android:textSize="18dp"
+            android:background="@drawable/custom_input_text"
+            android:padding="12dp"
+            android:layout_marginTop="16dp"/>
 
         <EditText
             android:id="@+id/descriptionEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Description"
+            android:gravity="top"
             android:inputType="textMultiLine"
             android:lines="4"
-            android:layout_marginBottom="16dp"/>
+            android:textSize="18dp"
+            android:background="@drawable/custom_input_text"
+            android:padding="12dp"
+            android:layout_marginTop="16dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:layout_marginBottom="24dp">
+            android:layout_marginTop="16dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Image"
-                android:layout_marginEnd="16dp"/>
+                android:textSize="18dp" />
 
             <ImageButton
                 android:id="@+id/uploadImageButton"
@@ -94,7 +113,8 @@
                 android:layout_height="wrap_content"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Upload Image"
-                android:src="@drawable/upload_icon" />
+                android:src="@drawable/upload_icon"
+                android:layout_marginStart="20dp"/>
         </LinearLayout>
 
         <Button
@@ -102,8 +122,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Create"
-            android:textColor="@android:color/white"
-            android:backgroundTint="@android:color/holo_blue_light"/>
+            android:textSize="18dp"
+            android:paddingVertical="20dp"
+            android:background="@drawable/custom_button_selected"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:layout_marginTop="150dp"/>
 
     </LinearLayout>
 </ScrollView>

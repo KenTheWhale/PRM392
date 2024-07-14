@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
+    android:paddingHorizontal="16dp"
+    android:paddingTop="16dp"
     tools:context=".LoginActivity">
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:padding="8dp"
         android:src="@drawable/back_arrow"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -19,6 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello,"
+        android:textColor="@color/black"
         android:textSize="28sp"
         android:textStyle="bold"
         android:layout_marginTop="24dp"/>
@@ -27,6 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Welcome Back!"
+        android:textColor="@color/black"
         android:textSize="28sp"
         android:textStyle="bold"
         android:layout_marginBottom="16dp"/>
@@ -44,6 +46,9 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:hint="Email"
+        android:background="@drawable/custom_input_text"
+        android:textSize="18dp"
+        android:padding="12dp"
         android:inputType="textEmailAddress"
         tools:ignore="TouchTargetSizeCheck" />
 
@@ -53,35 +58,45 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:hint="Password"
+        android:background="@drawable/custom_input_text"
+        android:textSize="18dp"
+        android:padding="12dp"
         android:inputType="textPassword"
         tools:ignore="TouchTargetSizeCheck" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Don't have an account?"/>
+            android:text="Don't have an account?"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tv_create_account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Create Account"
-            android:textColor="#4A6EFF"
-            android:layout_marginLeft="4dp"/>
+            android:textSize="18sp"
+            android:clickable="true"
+            android:textColor="@color/indigo_A700"
+            android:layout_marginLeft="4dp" />
     </LinearLayout>
 
     <Button
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:text="Get Started"
-        android:layout_marginTop="24dp"
-        android:background="#0D1B73"
-        android:textColor="#FFFDFD"/>
+        android:textSize="18dp"
+        android:textAllCaps="false"
+        android:layout_marginTop="307dp"
+        android:paddingVertical="20dp"
+        android:background="@drawable/custom_button_selected"
+        android:textColor="@color/white" />
 
 </LinearLayout>

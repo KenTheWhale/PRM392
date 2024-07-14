@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="16dp">
 
@@ -69,16 +70,25 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:layout_marginTop="16dp" />
-
-    <Button
-        android:id="@+id/contactButton"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Contact shop"
-        android:textSize="18dp"
-        android:paddingVertical="20dp"
-        android:background="@drawable/custom_button_selected"
-        android:textColor="@color/white"
-        android:textAllCaps="false"
-        android:layout_marginTop="30dp" />
+        android:layout_marginTop="30dp">
+        <ImageButton
+            android:id="@+id/img_delete"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/delete_icon"
+            app:layout_constraintStart_toEndOf="@id/img_update"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <ImageButton
+            android:id="@+id/img_update"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/edit_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/img_delete"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
