@@ -41,4 +41,6 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.lombok)
     annotationProcessor(libs.lombok.v11820)
+    implementation ("com.github.bumptech.glide:glide:4.11.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.11.0")
 }
