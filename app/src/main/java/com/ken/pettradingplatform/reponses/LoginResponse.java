@@ -22,6 +22,7 @@ public class LoginResponse {
     @NoArgsConstructor
     @Builder
     public static class Account implements Serializable {
+        private int id;
         private String fullName;
         private String email;
         private String password;

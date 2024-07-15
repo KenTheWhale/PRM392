@@ -4,13 +4,13 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.ken.pettradingplatform.Adapter.ImagePagerAdapter;
@@ -20,8 +20,9 @@ import java.util.List;
 
 public class HomepageActivity extends Activity {
 
-    ImageButton btnSearch, btnNoti;
+    ImageButton btnSearch, btnNoti, btnProfile, btnSetting;
     TextView tvViewAllPosts;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,6 +41,8 @@ public class HomepageActivity extends Activity {
 
         btnSearch = findViewById(R.id.btn_search);
         btnNoti = findViewById(R.id.btn_noti);
+        btnProfile = findViewById(R.id.btn_profile);
+        btnSetting = findViewById(R.id.btn_setting);
         tvViewAllPosts = findViewById(R.id.tv_posts_view);
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,10 +64,44 @@ public class HomepageActivity extends Activity {
                 moveToAnotherPage(NotificationActivity.class);
             }
         });
+
+        btnProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences sharedPref = getSharedPreferences("session", Context.MODE_PRIVATE);
+                String accountID = sharedPref.getString("account", null);
+                if(accountID == null){
+                    moveToLogin("homepage");
+                    return;
+                }
+                moveToAnotherPage(ProfileUserActivity.class);
+            }
+        });
+
+        btnSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                moveToSetting("homepage");
+            }
+        });
     }
 
     private void moveToAnotherPage(Class<?> classes){
         startActivity(new Intent(this, classes));
+        finish();
+    }
+
+    private void moveToSetting(String parent){
+        Intent intent = new Intent(this, SettingActivity.class);
+        intent.putExtra("parent", parent);
+        startActivity(intent);
+        finish();
+    }
+
+    private void moveToLogin(String parent){
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.putExtra("parent", parent);
+        startActivity(intent);
         finish();
     }
 }

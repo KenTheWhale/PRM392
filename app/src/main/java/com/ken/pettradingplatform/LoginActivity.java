@@ -1,8 +1,12 @@
 package com.ken.pettradingplatform;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -10,9 +14,11 @@ import retrofit2.Response;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.ken.pettradingplatform.configurations.APIClientConfig;
@@ -27,6 +33,7 @@ public class LoginActivity extends Activity {
         setContentView(R.layout.activity_login);
 
         Button btnLogin = findViewById(R.id.btn_login);
+        ImageButton btnBack = findViewById(R.id.btn_back);
         TextView tvCreateAccount = findViewById(R.id.tv_create_account);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -39,12 +46,19 @@ public class LoginActivity extends Activity {
         tvCreateAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                moveToRegister();
+                moveToAnotherPage(RegisterActivity.class);
+            }
+        });
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                moveToAnotherPage(processParentClassBackButton());
             }
         });
     }
 
-    private void login(){
+    private void login() {
         EditText txtEmail = findViewById(R.id.txt_email);
         EditText txtPass = findViewById(R.id.txt_password);
 
@@ -60,30 +74,43 @@ public class LoginActivity extends Activity {
         Call<LoginResponse> response = controller.login(request);
         response.enqueue(new Callback<LoginResponse>() {
             @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+            public void onResponse(@NonNull Call<LoginResponse> call, @NonNull Response<LoginResponse> response) {
                 assert response.body() != null;
-                if(response.body().getStatus().equals("200")){
-                    moveToHomepage(response.body().getAccount());
+                if (response.body().getStatus().equals("200")) {
+                    storeAccount(response.body().getAccount().getId());
+                    moveToAnotherPage(processParentClassBackButton());
                     return;
                 }
                 Toast.makeText(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_LONG).show();
             }
 
             @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<LoginResponse> call, @NonNull Throwable t) {
                 Toast.makeText(getApplicationContext(), "Network failure", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void moveToHomepage(LoginResponse.Account account){
-        Intent i = new Intent(this, HomepageActivity.class);
-        i.putExtra("acc", account);
-        startActivity(i);
-        finish();
+
+    private void storeAccount(int accountID) {
+        SharedPreferences sharedPref = getSharedPreferences("session", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("account", accountID + "");
+        editor.apply();
     }
 
-    private void moveToRegister(){
-        startActivity(new Intent(this, RegisterActivity.class));
+    private Class<?> processParentClassBackButton(){
+        String parent = getIntent().getStringExtra("parent");
+        assert parent != null;
+        if (parent.equals("homepage")) {
+            return HomepageActivity.class;
+        }
+        return LoginActivity.class;
+    }
+
+    private void moveToAnotherPage(Class<?> classes){
+        startActivity(new Intent(this, classes));
+        finish();
     }
 }
+
