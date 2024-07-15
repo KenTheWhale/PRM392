@@ -21,7 +21,7 @@ import java.util.List;
 public class HomepageActivity extends Activity {
 
     ImageButton btnSearch, btnNoti, btnProfile, btnSetting;
-    TextView tvViewAllPosts;
+    TextView tvViewAllPosts, labelUsername, tvName;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -44,6 +44,15 @@ public class HomepageActivity extends Activity {
         btnProfile = findViewById(R.id.btn_profile);
         btnSetting = findViewById(R.id.btn_setting);
         tvViewAllPosts = findViewById(R.id.tv_posts_view);
+        labelUsername = findViewById(R.id.tv_username);
+        tvName = findViewById(R.id.tv_username_holder);
+
+        SharedPreferences sharedPref = getSharedPreferences("session", Context.MODE_PRIVATE);
+        String accountID = sharedPref.getString("account", null);
+        if(accountID == null){
+            labelUsername.setVisibility(View.INVISIBLE);
+            tvName.setVisibility(View.INVISIBLE);
+        }
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
