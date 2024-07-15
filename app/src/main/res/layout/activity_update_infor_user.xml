@@ -24,7 +24,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="Profile"
-            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@id/backButton"
             app:layout_constraintStart_toEndOf="@id/backButton"
@@ -36,6 +37,7 @@
             android:layout_height="150dp"
             android:layout_marginTop="24dp"
             app:cardCornerRadius="16dp"
+            android:backgroundTint="@color/indigo_A700"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/titleTextView">
@@ -43,8 +45,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                 />
+                android:scaleType="centerCrop" />
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -63,6 +64,7 @@
             android:src="@drawable/phone_icon"
             android:layout_marginTop="-50dp"
             android:elevation="4dp"
+            android:clickable="true"
             app:layout_constraintBottom_toBottomOf="@id/headerCardView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -81,7 +83,7 @@
             app:layout_constraintTop_toBottomOf="@id/profileImageView" />
 
         <TextView
-            android:id="@+id/usernameLabel"
+            android:id="@+id/fullnameLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -90,15 +92,17 @@
             app:layout_constraintTop_toBottomOf="@id/nameTextView" />
 
         <EditText
-            android:id="@+id/usernameEditText"
+            android:id="@+id/fullnameEditText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Abdul"
+            android:hint="Full Name"
+            android:textSize="18dp"
+            android:background="@drawable/custom_input_text"
             android:padding="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/usernameLabel" />
+            app:layout_constraintTop_toBottomOf="@id/fullnameLabel" />
 
         <TextView
             android:id="@+id/phoneLabel"
@@ -107,15 +111,17 @@
             android:layout_marginTop="16dp"
             android:text="Phone"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/usernameEditText" />
+            app:layout_constraintTop_toBottomOf="@id/fullnameEditText" />
 
         <EditText
             android:id="@+id/phoneEditText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Abdul"
+            android:hint="Phone number"
+            android:textSize="18dp"
             android:inputType="phone"
+            android:background="@drawable/custom_input_text"
             android:padding="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -126,9 +132,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:backgroundTint="#4A60DA"
-            android:padding="12dp"
+            android:paddingVertical="20dp"
             android:text="Save Changes"
+            android:textSize="18dp"
+            android:background="@drawable/custom_button_selected"
+            android:textColor="@color/white"
             android:textAllCaps="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

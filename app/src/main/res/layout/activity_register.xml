@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Create New Account"
+        android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
         android:layout_marginBottom="16dp"/>
@@ -28,6 +29,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Full Name"
+        android:background="@drawable/custom_input_text"
+        android:textSize="18dp"
+        android:padding="12dp"
         android:inputType="textPersonName"
         android:layout_marginBottom="16dp"/>
 
@@ -36,6 +40,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Email"
+        android:background="@drawable/custom_input_text"
+        android:textSize="18dp"
+        android:padding="12dp"
         android:inputType="textEmailAddress"
         android:layout_marginBottom="16dp"/>
 
@@ -44,6 +51,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Password"
+        android:background="@drawable/custom_input_text"
+        android:textSize="18dp"
+        android:padding="12dp"
         android:inputType="textPassword"
         android:layout_marginBottom="16dp"/>
 
@@ -52,6 +62,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Confirm password"
+        android:background="@drawable/custom_input_text"
+        android:textSize="18dp"
+        android:padding="12dp"
         android:inputType="textPassword"
         android:layout_marginBottom="16dp"/>
 
@@ -60,24 +73,41 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="I agree to the Terms of Service and Privacy Policy"
-        android:textSize="12sp"
-        android:layout_marginBottom="24dp"/>
-
-    <TextView
-        android:id="@+id/loginTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Have an account? Login"
         android:textSize="14sp"
-        android:layout_gravity="center_horizontal"
         android:layout_marginBottom="24dp"/>
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Have an account? "
+            android:clickable="true"
+            android:textSize="16sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="24dp"/>
+        <TextView
+            android:id="@+id/loginTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:textColor="@color/indigo_A700"
+            android:clickable="true"
+            android:textSize="16sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="24dp"/>
+    </LinearLayout>
     <Button
         android:id="@+id/getStartedButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Register"
-        android:backgroundTint="#E0E0E0"
-        android:textColor="#000000"/>
+        android:textSize="16dp"
+        android:paddingVertical="20dp"
+        android:background="@drawable/custom_button_selected"
+        android:textColor="@color/white"
+        android:textAllCaps="false" />
 
 </LinearLayout>
