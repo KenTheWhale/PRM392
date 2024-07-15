@@ -43,7 +43,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="24dp">
 
             <androidx.cardview.widget.CardView
@@ -95,35 +95,64 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/nameTextView" />
 
-            <EditText
+            <TextView
                 android:id="@+id/shopNameEditText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="Shop Name"
                 android:layout_marginTop="8dp"
-                android:textSize="18sp"
                 android:background="@drawable/custom_input_text"
+                android:hint="Shop Name"
                 android:padding="12dp"
-                app:layout_constraintStart_toStartOf="parent"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/shopNameTextView" />
 
-            <Button
-                android:id="@+id/updateButton"
+            <TextView
+                android:id="@+id/addressShopprofi"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/custom_input_text"
+                android:hint="Shop Name"
+                android:padding="12dp"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/shopNameTextView" />
+
+            <TextView
+                android:id="@+id/addressShopProfi"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_input_text"
+                android:layout_marginTop="5dp"
+                android:hint="Address "
+                android:padding="12dp"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/shopNameEditText" />
+
+            <Button
+                android:id="@+id/btn_UpdateShopInfo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/custom_button_selected"
                 android:paddingVertical="20dp"
                 android:text="Update"
-                android:textSize="18sp"
-                android:background="@drawable/custom_button_selected"
-                android:textColor="@color/white"
                 android:textAllCaps="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/shopNameEditText"
+                android:textColor="@color/white"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="16dp"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/addressShopProfi" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>

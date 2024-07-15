@@ -55,6 +55,8 @@ public class ShopProfileActivity extends Activity {
 
         shopController = APIClientConfig.getClient().create(ShopController.class);
 
+        initData();
+
     }
 
     public void initData(){
