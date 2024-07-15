@@ -22,6 +22,6 @@ public interface ShopController {
     Call<Void> createRequest(@Body CreateReqRequest request);
     public Call<ShopPostListResponse> cancelPost();
 
-    @GET("api/Posts/ViewAllPost")
+    @GET("api/Posts/GetProfileShopByAccountID")
     public Call<ShopProfileResponse> getShopByID(@Body ShopProfileRequest request);
 }
