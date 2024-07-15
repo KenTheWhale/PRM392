@@ -54,6 +54,7 @@ public class RegisterActivity extends Activity {
 
 
         RegisterRequest request = RegisterRequest.builder()
+                .fullName("NewUser")
                 .email(email)
                 .password(pass)
                 .confirmPassword(confirm)
