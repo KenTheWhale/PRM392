@@ -16,6 +16,6 @@ public interface ShopController {
     @DELETE("api/Posts/CancelPost")
     public Call<ShopPostListResponse> cancelPost();
 
-    @GET("api/Posts/ViewAllPost")
+    @GET("api/Posts/GetProfileShopByAccountID")
     public Call<ShopProfileResponse> getShopByID(@Body ShopProfileRequest request);
 }
