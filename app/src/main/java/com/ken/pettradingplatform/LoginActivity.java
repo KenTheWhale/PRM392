@@ -77,12 +77,12 @@ public class LoginActivity extends Activity {
             public void onResponse(@NonNull Call<LoginResponse> call, @NonNull Response<LoginResponse> response) {
                 assert response.body() != null;
                 if (response.body().getStatus().equals("200")) {
-                    if(response.body().getRole().equals("buyer")){
-                        storeAccount(response.body().getAccountID());
+                    if(response.body().getData().getRole().equals("buyer")){
+                        storeAccount(response.body().getData().getAccountID());
                         moveToAnotherPage(processParentClassBackButton());
                         return;
                     } else {
-                        storeAccount(response.body().getAccountID());
+                        storeAccount(response.body().getData().getAccountID());
                         moveToAnotherPage(ShopInfoActivity.class);
                     }
                 }

@@ -21,6 +21,8 @@ public class SettingActivity extends Activity {
                 moveToAnotherPage(processParentClassBackButton());
             }
         });
+
+
     }
 
     private Class<?> processParentClassBackButton(){

@@ -68,6 +68,9 @@ public class HomepageActivity extends Activity {
         if(accountID == null){
             labelUsername.setVisibility(View.INVISIBLE);
             tvName.setVisibility(View.INVISIBLE);
+        }else{
+            labelUsername.setVisibility(View.VISIBLE);
+            tvName.setText("");
         }
         btnSearch.setOnClickListener(v -> moveToAnotherPage(SearchActivity.class));
 

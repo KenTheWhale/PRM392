@@ -2,7 +2,11 @@ package com.ken.pettradingplatform;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,7 +22,9 @@ import androidx.annotation.Nullable;
 
 import com.ken.pettradingplatform.configurations.APIClientConfig;
 import com.ken.pettradingplatform.controllers.CustomerController;
+import com.ken.pettradingplatform.controllers.ShopController;
 import com.ken.pettradingplatform.reponses.CustomerPostResponse;
+import com.ken.pettradingplatform.requests.CreateReqRequest;
 import com.ken.pettradingplatform.requests.CustomerPostRequest;
 
 import retrofit2.Call;
@@ -33,6 +39,7 @@ public class ViewPostDetailActivity extends Activity {
     CheckBox checkBox;
     Button btnContact;
     CustomerController customerController;
+    ShopController shopController;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -66,26 +73,18 @@ public class ViewPostDetailActivity extends Activity {
                         description.setText(post.getDescription());
                         price.setText("$" + post.getPrice());
 
-                        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                            @Override
-                            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                                if(isChecked){
-                                    btnContact.setText("Pick it now");
-                                    btnContact.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            choosePet();
-                                        }
-                                    });
-                                }else{
-                                    btnContact.setText("Contact seller");
-                                    btnContact.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            contactSeller();
-                                        }
-                                    });
-                                }
+                        checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                            if(isChecked){
+                                btnContact.setText("Pick it now");
+                                btnContact.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        choosePet();
+                                    }
+                                });
+                            }else{
+                                btnContact.setText("Contact seller");
+                                btnContact.setOnClickListener(v -> contactSeller());
                             }
                         });
                     }
@@ -98,12 +97,7 @@ public class ViewPostDetailActivity extends Activity {
             }
         });
 
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                moveToAnotherPage(processParentClassBackButton());
-            }
-        });
+        btnBack.setOnClickListener(v -> moveToAnotherPage(processParentClassBackButton()));
     }
 
     private void contactSeller(){
@@ -111,6 +105,33 @@ public class ViewPostDetailActivity extends Activity {
     }
 
     private void choosePet(){
+        SharedPreferences sharedPref = getSharedPreferences("session", Context.MODE_PRIVATE);
+        int postId = getIntent().getIntExtra("postId", -1);
+        String accountId = sharedPref.getString("account", null);
+        if(accountId != null && postId != -1){
+            shopController = APIClientConfig.getClient().create(ShopController.class);
+            CreateReqRequest request = CreateReqRequest.builder().accountId(Integer.parseInt(accountId)).postId(postId).build();
+            Call<Void> response = shopController.createRequest(request);
+            response.enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ViewPostDetailActivity.this);
+                    builder.setTitle("Request sent successfully!!")
+                            .setMessage("Your request is now in pending, please wait for the latest notification")
+                            .setPositiveButton("I have understood", (dialog, id) -> {
+                                startActivity(new Intent(ViewPostDetailActivity.this, HomepageActivity.class));
+                                finish();
+                            });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+
+                @Override
+                public void onFailure(Call<Void> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(), "Load fail", Toast.LENGTH_LONG).show();
+                }
+            });
+        }
 
     }
 

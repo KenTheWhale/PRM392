@@ -11,7 +11,7 @@ import retrofit2.http.POST;
 
 public interface AccountController {
 
-    @POST("api/Accounts/login")
+    @POST("api/Accounts/Login/login")
     Call<LoginResponse> login(@Body LoginRequest request);
 
     @POST("api/Accounts/register")
