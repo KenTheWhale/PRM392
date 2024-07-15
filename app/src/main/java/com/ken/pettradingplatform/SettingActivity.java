@@ -26,10 +26,11 @@ public class SettingActivity extends Activity {
     private Class<?> processParentClassBackButton(){
         String parent = getIntent().getStringExtra("parent");
         assert parent != null;
-        if (parent.equals("homepage")) {
-            return HomepageActivity.class;
+        switch (parent){
+            case "homepage": return HomepageActivity.class;
+            case "viewposts": return ViewPostsActivity.class;
+            default: return SettingActivity.class;
         }
-        return SettingActivity.class;
     }
 
     private void moveToAnotherPage(Class<?> classes){

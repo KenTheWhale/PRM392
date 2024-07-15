@@ -15,18 +15,6 @@ import lombok.NoArgsConstructor;
 public class LoginResponse {
     private String status;
     private String message;
-    private Account account;
-
-    @Data
-    @AllArgsConstructor
-    @NoArgsConstructor
-    @Builder
-    public static class Account implements Serializable {
-        private int id;
-        private String fullName;
-        private String email;
-        private String password;
-        private String phoneNumber;
-        private String role;
-    }
+    private int accountID;
+    private String role;
 }

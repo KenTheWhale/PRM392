@@ -77,9 +77,11 @@ public class LoginActivity extends Activity {
             public void onResponse(@NonNull Call<LoginResponse> call, @NonNull Response<LoginResponse> response) {
                 assert response.body() != null;
                 if (response.body().getStatus().equals("200")) {
-                    storeAccount(response.body().getAccount().getId());
-                    moveToAnotherPage(processParentClassBackButton());
-                    return;
+                    if(response.body().getRole().equals("buyer")){
+                        storeAccount(response.body().getAccountID());
+                        moveToAnotherPage(processParentClassBackButton());
+                        return;
+                    }
                 }
                 Toast.makeText(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_LONG).show();
             }
@@ -102,10 +104,11 @@ public class LoginActivity extends Activity {
     private Class<?> processParentClassBackButton(){
         String parent = getIntent().getStringExtra("parent");
         assert parent != null;
-        if (parent.equals("homepage")) {
-            return HomepageActivity.class;
+        switch (parent){
+            case "homepage": return HomepageActivity.class;
+            case "viewposts": return ViewPostsActivity.class;
+            default: return LoginActivity.class;
         }
-        return LoginActivity.class;
     }
 
     private void moveToAnotherPage(Class<?> classes){

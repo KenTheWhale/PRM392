@@ -74,7 +74,7 @@ public class HomepageActivity extends Activity {
                     moveToLogin("homepage");
                     return;
                 }
-                moveToAnotherPage(ProfileUserActivity.class);
+                moveToProfile("homepage");
             }
         });
 
@@ -100,6 +100,13 @@ public class HomepageActivity extends Activity {
 
     private void moveToLogin(String parent){
         Intent intent = new Intent(this, LoginActivity.class);
+        intent.putExtra("parent", parent);
+        startActivity(intent);
+        finish();
+    }
+
+    private void moveToProfile(String parent){
+        Intent intent = new Intent(this, ProfileUserActivity.class);
         intent.putExtra("parent", parent);
         startActivity(intent);
         finish();
