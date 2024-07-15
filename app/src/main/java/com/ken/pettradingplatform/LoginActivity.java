@@ -81,6 +81,9 @@ public class LoginActivity extends Activity {
                         storeAccount(response.body().getAccountID());
                         moveToAnotherPage(processParentClassBackButton());
                         return;
+                    } else {
+                        storeAccount(response.body().getAccountID());
+                        moveToAnotherPage(ShopInfoActivity.class);
                     }
                 }
                 Toast.makeText(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_LONG).show();

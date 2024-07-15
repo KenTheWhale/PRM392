@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:background="@android:color/white">
+
+    <ImageView
+        android:id="@+id/img_Notification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/product_image"
+        android:scaleType="centerCrop"
+        android:background="@android:color/darker_gray"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp">
+
+        <TextView
+            android:id="@+id/ShopNameNoti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ShopName"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:id="@+id/PostNameNoti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Post Name"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"/>
+        <TextView
+            android:id="@+id/AddressNoti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Address"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"/>
+        <TextView
+            android:id="@+id/MoneyNoti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Money"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"/>
+        <TextView
+            android:id="@+id/SellerNameNoti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SellerName"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"/>
+        <TextView
+            android:id="@+id/SellerPhoneNoti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SellerPhone"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"/>
+        <TextView
+            android:id="@+id/MeetDateNoti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MeetDate"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"/>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

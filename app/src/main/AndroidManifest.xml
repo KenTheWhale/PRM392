@@ -32,6 +32,8 @@
         <activity android:name=".SettingActivity" android:exported="true"/>
         <activity android:name=".ViewPostDetailActivity" android:exported="true"/>
         <activity android:name=".ShopProfileActivity" android:exported="true"/>
+        <activity android:name=".ShopInfoActivity" android:exported="true"/>
+        <activity android:name=".UpdatePostActivity" android:exported="true"/>
 
     </application>
 
