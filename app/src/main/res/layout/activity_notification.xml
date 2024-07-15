@@ -28,7 +28,7 @@
         android:layout_marginStart="16dp"
         app:layout_constraintStart_toEndOf="@id/backButton"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/notificationRecyclerView"/>
+        />
 
     <ListView
         android:id="@+id/notificationListView"

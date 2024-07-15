@@ -8,9 +8,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginBottom="16dp"
         android:gravity="center_vertical"
-        android:layout_marginBottom="16dp">
+        android:orientation="horizontal">
 
         <ImageButton
             android:id="@+id/backButton"
@@ -23,21 +23,21 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:text="Search"
             android:textColor="@color/black"
             android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_marginStart="16dp"/>
+            android:textStyle="bold" />
     </LinearLayout>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Search your Product"
+        android:layout_marginBottom="16dp"
         android:drawableStart="@drawable/search_icon"
         android:drawablePadding="8dp"
-        android:padding="8dp"
-        android:layout_marginBottom="16dp"/>
+        android:hint="Search your Product"
+        android:padding="8dp" />
 
     <HorizontalScrollView
         android:layout_width="match_parent"
@@ -49,40 +49,54 @@
             android:orientation="horizontal">
 
             <Button
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Food"
-                android:textColor="@drawable/custom_category_text_controller"
-                android:background="@drawable/custom_category_controller"
-                style="?android:attr/buttonBarButtonStyle"
-                android:paddingVertical="14dp"
-                android:paddingHorizontal="20dp"
                 android:layout_marginVertical="2dp"
-                android:layout_marginStart="16dp" />
+                android:layout_marginStart="16dp"
+                android:background="@drawable/custom_category_controller"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="14dp"
+                android:text="Dog"
+                android:textColor="@drawable/custom_category_text_controller" />
 
             <Button
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Toys"
-                android:textColor="@drawable/custom_category_text_controller"
-                android:background="@drawable/custom_category_controller"
-                style="?android:attr/buttonBarButtonStyle"
-                android:paddingVertical="14dp"
-                android:paddingHorizontal="20dp"
                 android:layout_marginVertical="2dp"
-                android:layout_marginStart="8dp" />
+                android:layout_marginStart="8dp"
+                android:background="@drawable/custom_category_controller"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="14dp"
+                android:text="Cat"
+                android:textColor="@drawable/custom_category_text_controller" />
 
             <Button
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Accessories"
-                android:textColor="@drawable/custom_category_text_controller"
-                android:background="@drawable/custom_category_controller"
-                style="?android:attr/buttonBarButtonStyle"
-                android:paddingVertical="14dp"
-                android:paddingHorizontal="20dp"
                 android:layout_marginVertical="2dp"
-                android:layout_marginStart="8dp" />
+                android:layout_marginStart="8dp"
+                android:background="@drawable/custom_category_controller"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="14dp"
+                android:text="Hamster"
+                android:textColor="@drawable/custom_category_text_controller" />
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/right_arrow_v2" />
         </LinearLayout>
     </HorizontalScrollView>
+
+    <GridView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:horizontalSpacing="8dp"
+        android:numColumns="2"
+        android:padding="8dp"
+        android:verticalSpacing="8dp" />
 </LinearLayout>

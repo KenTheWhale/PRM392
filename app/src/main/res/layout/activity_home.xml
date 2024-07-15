@@ -109,7 +109,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Food"
+                android:text="Dog"
                 android:textColor="@drawable/custom_category_text_controller"
                 android:background="@drawable/custom_category_controller"
                 style="?android:attr/buttonBarButtonStyle"
@@ -121,7 +121,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Toys"
+                android:text="Cat"
                 android:textColor="@drawable/custom_category_text_controller"
                 android:background="@drawable/custom_category_controller"
                 style="?android:attr/buttonBarButtonStyle"
@@ -133,7 +133,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Accessories"
+                android:text="Hamster"
                 android:textColor="@drawable/custom_category_text_controller"
                 android:background="@drawable/custom_category_controller"
                 style="?android:attr/buttonBarButtonStyle"
