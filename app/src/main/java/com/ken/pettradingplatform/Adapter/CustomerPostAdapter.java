@@ -60,7 +60,7 @@ public class CustomerPostAdapter extends BaseAdapter {
 
         image.setImageResource(R.drawable.dog);
         name.setText(post.getTypeName());
-        price.setText(post.getPrice() + "");
+        price.setText("$" + post.getPrice());
         btnDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
