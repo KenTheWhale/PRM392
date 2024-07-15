@@ -1,5 +1,6 @@
 package com.ken.pettradingplatform.reponses;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -17,11 +18,12 @@ public class CustomerPostListResponse {
     @NoArgsConstructor
     @Builder
     public static class Post{
+        private int id;
         private String typeName;
         private float price;
     }
 
     private String status;
     private String message;
-    private List<Post> posts;
+    private ArrayList<Post> data;
 }

@@ -16,6 +16,8 @@ public class ViewPostDetailActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_post);
 
+        btnBack = findViewById(R.id.backButton);
+
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

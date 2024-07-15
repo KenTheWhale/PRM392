@@ -7,21 +7,36 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewpager.widget.ViewPager;
 
+import com.ken.pettradingplatform.Adapter.CustomerPostAdapter;
 import com.ken.pettradingplatform.Adapter.ImagePagerAdapter;
+import com.ken.pettradingplatform.configurations.APIClientConfig;
+import com.ken.pettradingplatform.controllers.CustomerController;
+import com.ken.pettradingplatform.reponses.CustomerPostListResponse;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomepageActivity extends Activity {
 
     ImageButton btnSearch, btnNoti, btnProfile, btnSetting;
     TextView tvViewAllPosts, labelUsername, tvName;
+    GridView gvPet;
+    ArrayList<CustomerPostListResponse.Post> posts;
+    CustomerController customerController;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -46,6 +61,7 @@ public class HomepageActivity extends Activity {
         tvViewAllPosts = findViewById(R.id.tv_posts_view);
         labelUsername = findViewById(R.id.tv_username);
         tvName = findViewById(R.id.tv_username_holder);
+        gvPet = findViewById(R.id.gv_pet);
 
         SharedPreferences sharedPref = getSharedPreferences("session", Context.MODE_PRIVATE);
         String accountID = sharedPref.getString("account", null);
@@ -53,44 +69,48 @@ public class HomepageActivity extends Activity {
             labelUsername.setVisibility(View.INVISIBLE);
             tvName.setVisibility(View.INVISIBLE);
         }
-        btnSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                moveToAnotherPage(SearchActivity.class);
+        btnSearch.setOnClickListener(v -> moveToAnotherPage(SearchActivity.class));
+
+        tvViewAllPosts.setOnClickListener(v -> moveToAnotherPage(ViewPostsActivity.class));
+
+        btnNoti.setOnClickListener(v -> moveToAnotherPage(NotificationActivity.class));
+
+        btnProfile.setOnClickListener(v -> {
+            SharedPreferences sharedPref1 = getSharedPreferences("session", Context.MODE_PRIVATE);
+            String accountID1 = sharedPref1.getString("account", null);
+            if(accountID1 == null){
+                moveToLogin("homepage");
+                return;
             }
+            moveToProfile("homepage");
         });
 
-        tvViewAllPosts.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                moveToAnotherPage(ViewPostsActivity.class);
-            }
-        });
+        btnSetting.setOnClickListener(v -> moveToSetting("homepage"));
 
-        btnNoti.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                moveToAnotherPage(NotificationActivity.class);
-            }
-        });
+        customerController = APIClientConfig.getClient().create(CustomerController.class);
 
-        btnProfile.setOnClickListener(new View.OnClickListener() {
+        initData();
+    }
+
+    public void initData(){
+        posts = new ArrayList<>();
+        Call<CustomerPostListResponse> response = customerController.getAllPost();
+        response.enqueue(new Callback<CustomerPostListResponse>() {
             @Override
-            public void onClick(View v) {
-                SharedPreferences sharedPref = getSharedPreferences("session", Context.MODE_PRIVATE);
-                String accountID = sharedPref.getString("account", null);
-                if(accountID == null){
-                    moveToLogin("homepage");
-                    return;
+            public void onResponse(@NonNull Call<CustomerPostListResponse> call, @NonNull Response<CustomerPostListResponse> response) {
+                if(response.isSuccessful()) {
+                    assert response.body() != null;
+                    if (response.body().getStatus().equals("200")) {
+                        posts = response.body().getData();
+                        CustomerPostAdapter customerPostAdapter = new CustomerPostAdapter(HomepageActivity.this, R.layout.pest_post_customer, posts, "homepage");
+                        gvPet.setAdapter(customerPostAdapter);
+                    }
                 }
-                moveToProfile("homepage");
             }
-        });
 
-        btnSetting.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                moveToSetting("homepage");
+            public void onFailure(@NonNull Call<CustomerPostListResponse> call, @NonNull Throwable t) {
+                Toast.makeText(getApplicationContext(), "Load fail", Toast.LENGTH_LONG).show();
             }
         });
     }
