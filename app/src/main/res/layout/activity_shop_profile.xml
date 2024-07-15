@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fillViewport="true"
+    tools:context=".ShopProfileActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -51,6 +53,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
                 <ImageView
+                    android:id="@+id/img_BackGroundShop"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
@@ -93,6 +96,7 @@
                 android:orientation="vertical"
                 android:gravity="center">
                 <TextView
+                    android:id="@+id/txt_NumberFeedBack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="109"
@@ -102,7 +106,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Followers"/>
+                    android:text="FeedBack"/>
             </LinearLayout>
 
             <LinearLayout
@@ -113,6 +117,7 @@
                 android:gravity="center">
 
                 <TextView
+                    android:id="@+id/txt_NumberRating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="4"
@@ -133,6 +138,7 @@
                 android:gravity="center">
 
                 <TextView
+                    android:id="@+id/txt_NumberSales"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="80"
@@ -146,10 +152,18 @@
             </LinearLayout>
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
+        <GridView
+            android:id="@+id/gv_postShop"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="16dp"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:numColumns="2"
+            android:nestedScrollingEnabled="true"
+            android:verticalSpacing="8dp"
+            android:horizontalSpacing="8dp"
+            android:stretchMode="columnWidth"
+            android:gravity="center"
+            tools:itemCount="6" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -157,18 +171,18 @@
             android:layout_marginTop="16dp">
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fileButton"
+                android:id="@+id/btn_menuRequest"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:backgroundTint="@color/indigo_A700"
                 android:src="@drawable/file_icon"
-                app:layout_constraintEnd_toStartOf="@+id/addButton"
+                app:layout_constraintEnd_toStartOf="@+id/btn_addPostShop"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/addButton"
+                android:id="@+id/btn_addPostShop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
