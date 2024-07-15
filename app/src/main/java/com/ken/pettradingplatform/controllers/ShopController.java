@@ -16,11 +16,10 @@ public interface ShopController {
     Call<ShopPostListResponse> getAllPost();
 
     @DELETE("api/Posts/CancelPost")
-    Call<ShopPostListResponse> cancelPost();
+    void cancelPost();
 
     @POST("api/Requests/CreateRequest")
     Call<Void> createRequest(@Body CreateReqRequest request);
-    public Call<ShopPostListResponse> cancelPost();
 
     @GET("api/Posts/GetProfileShopByAccountID")
     public Call<ShopProfileResponse> getShopByID(@Body ShopProfileRequest request);

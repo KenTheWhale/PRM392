@@ -34,6 +34,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <GridView
+        android:id="@+id/gv_pet"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"

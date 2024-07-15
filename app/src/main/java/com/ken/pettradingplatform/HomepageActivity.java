@@ -25,6 +25,7 @@ import com.ken.pettradingplatform.reponses.CustomerPostListResponse;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -105,6 +106,7 @@ public class HomepageActivity extends Activity {
                     assert response.body() != null;
                     if (response.body().getStatus().equals("200")) {
                         posts = response.body().getData();
+                        posts = posts.stream().limit(4).collect(Collectors.toCollection(ArrayList::new));
                         CustomerPostAdapter customerPostAdapter = new CustomerPostAdapter(HomepageActivity.this, R.layout.pest_post_customer, posts, "homepage");
                         gvPet.setAdapter(customerPostAdapter);
                     }
