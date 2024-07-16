@@ -21,6 +21,7 @@ public interface ShopController {
     @POST("api/Requests/CreateRequest")
     Call<Void> createRequest(@Body CreateReqRequest request);
 
-    @GET("api/Posts/GetProfileShopByAccountID")
-    public Call<ShopProfileResponse> getShopByID(@Body ShopProfileRequest request);
+    @POST("api/Shops/GetProfileShopByAccountID")
+    Call<ShopProfileResponse> getShopByID(@Body ShopProfileRequest request);
+
 }

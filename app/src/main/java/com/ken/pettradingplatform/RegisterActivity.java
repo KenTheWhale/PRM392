@@ -3,6 +3,7 @@ package com.ken.pettradingplatform;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import com.ken.pettradingplatform.configurations.APIClientConfig;
 import com.ken.pettradingplatform.controllers.AccountController;
 import com.ken.pettradingplatform.reponses.RegisterResponse;
@@ -27,31 +29,30 @@ public class RegisterActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        Button btnRegister = findViewById(R.id.getStartedButton);
+        Button btnRegister = findViewById(R.id.btnRegister);
         EditText etEmail = findViewById(R.id.emailEditText);
         EditText etPass = findViewById(R.id.passwordEditText);
         EditText etConfirmPass = findViewById(R.id.confirmPasswordEditText);
         CheckBox checkBox = findViewById(R.id.termsCheckBox);
 
-        String email = etEmail.getText().toString();
-        String pass = etPass.getText().toString();
-        String confirm = etConfirmPass.getText().toString();
-
-        btnRegister.setEnabled(false);
-        btnRegister.setEnabled(!email.isEmpty()
-                && !pass.isEmpty() && !confirm.isEmpty()
-                && checkBox.isChecked());
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                register(email, pass, confirm);
+                String email = etEmail.getText().toString();
+                String pass = etPass.getText().toString();
+                String confirm = etConfirmPass.getText().toString();
+
+                if (!email.isEmpty() && !pass.isEmpty() && !confirm.isEmpty() && checkBox.isChecked()) {
+                    register(email, pass, confirm);
+                } else {
+                    Toast.makeText(RegisterActivity.this, "Please fill all fields and accept the terms", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
 
-    private void register(String email, String pass, String confirm){
+    private void register(String email, String pass, String confirm) {
         AccountController controller = APIClientConfig.getClient().create(AccountController.class);
-
 
         RegisterRequest request = RegisterRequest.builder()
                 .fullName("NewUser")
@@ -63,24 +64,38 @@ public class RegisterActivity extends Activity {
         Call<RegisterResponse> response = controller.register(request);
         response.enqueue(new Callback<RegisterResponse>() {
             @Override
-            public void onResponse(@NonNull Call<RegisterResponse> call, Response<RegisterResponse> response) {
-                assert response.body() != null;
-                if(response.body().getStatus().equals("200")){
-                    moveToLogin();
-                    return;
-                }
-                Toast.makeText(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
+            public void onResponse(@NonNull Call<RegisterResponse> call, @NonNull Response<RegisterResponse> response) {
+                if (response.isSuccessful()) {
+                    RegisterResponse responseBody = response.body();
+                    if (responseBody != null) {
+                        String status = responseBody.getStatus();
+                        String message = responseBody.getMessage();
 
+                        if ("200".equals(status)) {
+                            moveToLogin();
+                        } else {
+                            Log.e("RegisterActivity", "Registration failed with status: " + status + ", message: " + message);
+                            Toast.makeText(getApplicationContext(), message != null ? message : "Failed to register", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Log.e("RegisterActivity", "Registration failed: Response body is null");
+                        Toast.makeText(getApplicationContext(), "Failed to register: Empty response", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Log.e("RegisterActivity", "Registration failed: " + response.code() + " " + response.message());
+                    Toast.makeText(getApplicationContext(), "Failed to register: " + response.message(), Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
-            public void onFailure(Call<RegisterResponse> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Network failure", Toast.LENGTH_SHORT).show();
+            public void onFailure(@NonNull Call<RegisterResponse> call, @NonNull Throwable t) {
+                Log.e("RegisterActivity", "Network failure", t);
+                Toast.makeText(getApplicationContext(), "Network failure: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void moveToLogin(){
+    private void moveToLogin() {
         startActivity(new Intent(this, LoginActivity.class));
         finish();
     }

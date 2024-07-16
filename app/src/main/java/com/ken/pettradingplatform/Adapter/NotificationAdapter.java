@@ -70,10 +70,10 @@ public class NotificationAdapter extends BaseAdapter {
         NotificationResponse.Notification noitfi = noti.get(position);
 
         image.setImageResource(R.drawable.dog);
-        shopName.setText(noitfi.getPostName());
-        postName.setText(noitfi.getPostName());
+        shopName.setText(noitfi.getShopName());
+        postName.setText(noitfi.getTitle());
         address.setText(noitfi.getAddress());
-        money.setText(noitfi.getMoney()+"");
+        money.setText(noitfi.getMoney() + "");
         sellerName.setText(noitfi.getSellerName());
         sellerPhone.setText(noitfi.getSellerPhone());
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");

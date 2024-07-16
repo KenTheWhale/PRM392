@@ -7,8 +7,9 @@ import com.ken.pettradingplatform.requests.NotificationRequest;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 
 public interface NotificationController {
-    @GET("api/Notifications/ViewNotificationByID")
-    public Call<NotificationResponse> getNotification(@Body NotificationRequest request);
+    @POST("api/Notifications/ViewNotificationByID")
+    Call<NotificationResponse> getNotification(@Body NotificationRequest request);
 }

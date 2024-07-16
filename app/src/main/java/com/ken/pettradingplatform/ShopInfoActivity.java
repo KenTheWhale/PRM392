@@ -15,7 +15,6 @@ import androidx.annotation.Nullable;
 import com.ken.pettradingplatform.configurations.APIClientConfig;
 import com.ken.pettradingplatform.controllers.ShopController;
 import com.ken.pettradingplatform.reponses.ShopProfileResponse;
-import com.ken.pettradingplatform.requests.NotificationRequest;
 import com.ken.pettradingplatform.requests.ShopProfileRequest;
 
 import retrofit2.Call;
@@ -24,9 +23,7 @@ import retrofit2.Response;
 
 public class ShopInfoActivity extends Activity {
     Button sellerModeButton, profileButton, btnUpdateShopInfo;
-
     TextView shopNameEditText, addressShopProfi;
-
     ShopController shopController;
 
     @Override
@@ -40,29 +37,36 @@ public class ShopInfoActivity extends Activity {
         shopNameEditText = findViewById(R.id.shopNameEditText);
         addressShopProfi = findViewById(R.id.addressShopProfi);
 
-
-
         shopController = APIClientConfig.getClient().create(ShopController.class);
         SharedPreferences sharedPref = getSharedPreferences("session", Context.MODE_PRIVATE);
         String accountID = sharedPref.getString("account", null);
-        if(accountID == null){
+        if(accountID != null) {
             ShopProfileRequest request = ShopProfileRequest.builder().id(Integer.parseInt(accountID)).build();
-            Call<ShopProfileResponse> responseCall =shopController.getShopByID(request);
+            Call<ShopProfileResponse> responseCall = shopController.getShopByID(request);
             responseCall.enqueue(new Callback<ShopProfileResponse>() {
                 @Override
                 public void onResponse(Call<ShopProfileResponse> call, Response<ShopProfileResponse> response) {
-                    shopNameEditText.setText(response.body().getShopName());
-                    addressShopProfi.setText(response.body().getAddress());
+                    if (response.isSuccessful() && response.body() != null) {
+                        ShopProfileResponse profileResponse = response.body();
+                        if (profileResponse.getData() != null) {
+                            ShopProfileResponse.DataResponse data = profileResponse.getData();
+                            shopNameEditText.setText(data.getName());
+                            addressShopProfi.setText(data.getAddress());
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Failed to load shop information", Toast.LENGTH_LONG).show();
+                        }
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Failed to load ", Toast.LENGTH_LONG).show();
+                    }
                 }
 
                 @Override
                 public void onFailure(Call<ShopProfileResponse> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(), "Load fail", Toast.LENGTH_LONG).show();
+
                 }
             });
+
         }
-
-
 
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +94,5 @@ public class ShopInfoActivity extends Activity {
                 finish();
             }
         });
-
-
     }
 }

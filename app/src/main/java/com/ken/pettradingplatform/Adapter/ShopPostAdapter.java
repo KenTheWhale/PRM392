@@ -58,8 +58,8 @@ public class ShopPostAdapter extends BaseAdapter {
         ImageView image = convertView.findViewById(R.id.img_postShop);
         TextView name = convertView.findViewById(R.id.txt_NamePostShop);
         TextView price = convertView.findViewById(R.id.txt_pricePostShop);
-        ImageButton btnDeletePost = image.findViewById(R.id.btn_deletePost);
-        ImageButton btnUpdatePost = image.findViewById(R.id.btn_updatePost);
+        ImageButton btnDeletePost = convertView.findViewById(R.id.btn_deletePost);
+        ImageButton btnUpdatePost = convertView.findViewById(R.id.btn_updatePost);
 
         ShopPostListResponse.Post post = posts.get(position);
 

@@ -12,6 +12,14 @@ import lombok.NoArgsConstructor;
 public class ShopProfileResponse {
     private String status;
     private String message;
-    private String shopName;
-    private String address;
+    private DataResponse data;
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Builder
+    public static class DataResponse {
+        private String name;
+        private String address;
+    }
 }

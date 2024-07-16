@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ken.pettradingplatform.Adapter.CustomerPostAdapter;
 import com.ken.pettradingplatform.Adapter.ShopPostAdapter;
 import com.ken.pettradingplatform.configurations.APIClientConfig;
@@ -24,7 +25,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ShopProfileActivity extends Activity {
-    Button btnProfile, btnSellerMode, btnAddPostShop, btnRequestMenu;
+    Button btnProfile, btnSellerMode;
+
+    FloatingActionButton btnAddPostShop, btnRequestMenu;
 
     GridView gvPostShop;
     ImageView imgBackground, imgProfile;

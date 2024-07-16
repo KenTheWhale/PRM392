@@ -1,5 +1,4 @@
 package com.ken.pettradingplatform.reponses;
-
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -13,20 +12,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class NotificationResponse {
+    private String status;
+    private String message;
+    private ArrayList<Notification> data;
+
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
     @Builder
-    public static class Notification{
+    public static class Notification {
+        private int id;
         private String shopName;
-        private String postName;
+        private String title;
         private String address;
         private float money;
         private String sellerName;
         private String sellerPhone;
         private Date meetDate;
     }
-    private String status;
-    private String message;
-    private ArrayList<NotificationResponse.Notification> data;
 }
